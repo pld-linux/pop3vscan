@@ -7,7 +7,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://heanet.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz 
-# Source0-md5:	9e6bf2493f1c12edaa11c97b7ef8d657
+# Source0-md5:	48783c81cf70590637993aa0082fa467
 URL:		http://pop3vscan.sf.net
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

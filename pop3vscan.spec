@@ -10,7 +10,7 @@ Source1:	pop3vscan.init
 # Source0-md5:	48783c81cf70590637993aa0082fa467
 URL:		http://pop3vscan.sf.net/
 PreReq:		rc-scripts
-Requires(post,preun):	/sbin/chkconfig
+#Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +44,8 @@ install %{name} $RPM_BUILD_ROOT%{_sbindir}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/chkconfig --add pop3vscan
+# no support for chkconfig in .init file: fix it first
+#/sbin/chkconfig --add pop3vscan
 if [ -f /var/lock/subsys/pop3vscan ]; then
 	/etc/rc.d/init.d/pop3vscan restart 1>&2
 else
@@ -56,7 +57,7 @@ if [ "$1" = "0" ]; then
 	if [ -f /var/lock/subsys/pop3vscan ]; then
 		/etc/rc.d/init.d/pop3vscan stop 1>&2
 	fi
-	/sbin/chkconfig --del pop3vscan
+#	/sbin/chkconfig --del pop3vscan
 fi
 
 %files

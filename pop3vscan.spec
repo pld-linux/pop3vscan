@@ -1,21 +1,23 @@
-# $Revision: #
-Summary:	pop3.proxy is an application level gateway for the POP3 protocol
-Summary(pl):	pop3.proxy jest aplikacyjn± bramk± dla protoko³u POP3
+Summary:	pop3.proxy - an application level gateway for the POP3 protocol
+Summary(pl):	pop3.proxy - aplikacyjna bramka dla protoko³u POP3
 Name:		pop3vscan
 Version:	0.4
 Release:	1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://heanet.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz 
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz 
 # Source0-md5:	48783c81cf70590637993aa0082fa467
-URL:		http://pop3vscan.sf.net
+URL:		http://pop3vscan.sf.net/
+PreReq:		rc-inetd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-pop3vscan provides transparent antivirus scanner gateway for the POP3 protocol 
+pop3vscan provides transparent antivirus scanner gateway for the POP3
+protocol.
 
 %description -l pl
-pop3vscan dostarcza przezroczystej bramki antywirusowej protoko³u POP3.
+pop3vscan dostarcza przezroczystej bramki antywirusowej dla protoko³u
+POP3.
 
 %prep
 %setup -q
@@ -33,8 +35,8 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man1,\
 /etc/sysconfig/rc-inetd,/var/spool/pop3vscan}
 
 install stuff/stuff/pop3vscan.rc.suse \
-$RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/pop3proxy
-install %{name}.{mail,conf} $RPM_BUILD_ROOT/etc/
+	$RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/pop3proxy
+install %{name}.{mail,conf} $RPM_BUILD_ROOT/etc
 install %{name} $RPM_BUILD_ROOT%{_sbindir}
 
 %clean
@@ -57,7 +59,6 @@ fi
 %doc README
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/rc-inetd/pop3proxy
 %attr(755,root,root) %{_sbindir}/*
-%config %verify(not md5 size mtime) /etc/%{name}.conf
-%config %verify(not md5 size mtime) /etc/%{name}.mail
+%config(noreplace) %verify(not md5 size mtime) /etc/%{name}.conf
+%config(noreplace) %verify(not md5 size mtime) /etc/%{name}.mail
 %dir /var/spool/pop3vscan
-      

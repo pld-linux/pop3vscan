@@ -1,0 +1,17 @@
+--- pop3vscan-0.4/pop3vscan.conf~	Wed Jun 12 02:19:05 2002
++++ pop3vscan-0.4/pop3vscan.conf	Mon Jan 19 00:03:25 2004
+@@ -179,6 +179,14 @@
+ # scanner = /usr/local/uvscan/uvscan
+ 
+ 
++## By pld-team based on http://clamav.sourceforge.net/faq.html#pagestart 
++## q: 14 How do I use ClamAV with pop3vscan?
++
++## virusregexp = .*: (.*) FOUND
++## scanner = /usr/bin/clamdscan --disable-summary -i
++## scannertype = basic
++
++
+ #
+ # deMIME Setting
+ #

@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+#
+#
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+
+# Get service config
+[ -f /etc/sysconfig/pop3vscan ] && . /etc/sysconfig/pop3vscan
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/pop3vscan ]; then
+		msg_starting pop3vscan
+		[ -f /var/run/pop3vscan/pop3vscan.pid ] && rm -f /var/run/pop3vscan/pop3vscan.pid
+		daemon "/usr/sbin/pop3vscan"
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pop3vscan		
+	else
+		msg_already_running pop3vscan
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/pop3vscan ]; then
+		msg_stopping pop3vscan
+		killproc pop3vscan
+		rm -f /var/run/pop3vscan.pid /var/lock/subsys/pop3vscan >/dev/null 2>&1
+	else
+		msg_not_running pop3vscan
+	fi	
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status pop3vscan
+	exit $?
+	;;
+  reload|force-reload)
+	if [ -f /var/lock/subsys/pop3vscan ]; then
+		msg_reloading pop3vscan
+		killproc pop3vscan -HUP
+		RETVAL=$?
+	else
+		msg_not_running pop3vscan >&2
+		exit 7
+	fi
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL

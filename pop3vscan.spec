@@ -1,5 +1,5 @@
-Summary:	pop3.proxy - an application level gateway for the POP3 protocol
-Summary(pl):	pop3.proxy - aplikacyjna bramka dla protoko³u POP3
+Summary:	pop3vscan - an application level gateway for the POP3 protocol
+Summary(pl):	pop3vscan - aplikacyjna bramka dla protoko³u POP3
 Name:		pop3vscan
 Version:	0.4
 Release:	1

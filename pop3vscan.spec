@@ -71,4 +71,4 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.mail
-%dir /var/spool/%{name}
+%attr(770,root,mail) %dir /var/spool/%{name}

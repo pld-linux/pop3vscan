@@ -1,12 +1,18 @@
 #!/bin/sh
 #
+# pop3vscan	pop3vscan an application level gateway for the POP3 protocol
 #
+# chkconfig:	345 60 40
+#
+# description:	pop3vscan pop3vscan provides transparent antivirus scanner \
+#		gateway for the POP3 protocol.
 #
 
 # Source function library
 . /etc/rc.d/init.d/functions
 
 # Get network config
+. /etc/sysconfig/network
 
 # Get service config
 [ -f /etc/sysconfig/pop3vscan ] && . /etc/sysconfig/pop3vscan

@@ -7,6 +7,7 @@ License:	GPL
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz 
 Source1:	pop3vscan.init
+Patch0:		pop3vscan.conf-clamav.patch
 # Source0-md5:	48783c81cf70590637993aa0082fa467
 URL:		http://pop3vscan.sf.net/
 PreReq:		rc-scripts
@@ -23,6 +24,7 @@ POP3.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 %{__make} \

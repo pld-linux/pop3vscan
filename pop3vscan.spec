@@ -11,6 +11,9 @@ Patch0:		pop3vscan.conf-clamav.patch
 # Source0-md5:	48783c81cf70590637993aa0082fa467
 URL:		http://pop3vscan.sf.net/
 PreReq:		rc-scripts
+BuildRequires:	pcre-devel
+Requires:	pcre
+Requires:	netfilter
 #Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

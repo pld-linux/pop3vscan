@@ -31,12 +31,12 @@ POP3.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man1,\
-/etc/sysconfig/rc-inetd,/var/spool/pop3vscan}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir},%{_mandir}/man1} \
+	$RPM_BUILD_ROOT{/etc/sysconfig/rc-inetd,/var/spool/pop3vscan}
 
 install stuff/stuff/pop3vscan.rc.suse \
 	$RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/pop3proxy
-install %{name}.{mail,conf} $RPM_BUILD_ROOT/etc
+install %{name}.{mail,conf} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{name} $RPM_BUILD_ROOT%{_sbindir}
 
 %clean
@@ -59,6 +59,6 @@ fi
 %doc README
 %attr(640,root,root) %config %verify(not size mtime md5) /etc/sysconfig/rc-inetd/pop3proxy
 %attr(755,root,root) %{_sbindir}/*
-%config(noreplace) %verify(not md5 size mtime) /etc/%{name}.conf
-%config(noreplace) %verify(not md5 size mtime) /etc/%{name}.mail
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.conf
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.mail
 %dir /var/spool/pop3vscan

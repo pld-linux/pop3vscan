@@ -5,15 +5,15 @@ Version:	0.4
 Release:	1.1
 License:	GPL
 Group:		Applications/Networking
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz 
+Source0:	http://dl.sourceforge.net/pop3vscan/%{name}-%{version}.tar.gz
 # Source0-md5:	48783c81cf70590637993aa0082fa467
-Source1:	pop3vscan.init
-Patch0:		pop3vscan.conf-clamav.patch
+Source1:	%{name}.init
+Patch0:		%{name}.conf-clamav.patch
 URL:		http://pop3vscan.sf.net/
-PreReq:		rc-scripts
 BuildRequires:	pcre-devel
 Requires:	pcre
-# FIXMI: which package in PLD provides 'netfilter' ? 
+Requires:	rc-scripts
+# FIXME: which package in PLD provides 'netfilter' ?
 #Requires:	netfilter
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -33,7 +33,7 @@ POP3.
 %build
 rm -fr ripmime/ripmime.a
 %{__make} \
-	CC=%{__cc} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
 
 %install
@@ -69,6 +69,6 @@ fi
 %doc README
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/*
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.conf
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/%{name}.mail
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.mail
 %attr(770,root,mail) %dir /var/spool/%{name}

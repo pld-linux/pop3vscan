@@ -24,7 +24,7 @@ case "$1" in
 		[ -f /var/run/pop3vscan/pop3vscan.pid ] && rm -f /var/run/pop3vscan/pop3vscan.pid
 		daemon "/usr/sbin/pop3vscan"
 		RETVAL=$?
-		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pop3vscan		
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pop3vscan
 	else
 		msg_already_running pop3vscan
 	fi
@@ -36,7 +36,7 @@ case "$1" in
 		rm -f /var/run/pop3vscan.pid /var/lock/subsys/pop3vscan >/dev/null 2>&1
 	else
 		msg_not_running pop3vscan
-	fi	
+	fi
 	;;
   restart)
 	$0 stop

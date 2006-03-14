@@ -9,13 +9,13 @@ Source0:	http://dl.sourceforge.net/pop3vscan/%{name}-%{version}.tar.gz
 # Source0-md5:	48783c81cf70590637993aa0082fa467
 Source1:	%{name}.init
 Patch0:		%{name}.conf-clamav.patch
-URL:		http://pop3vscan.sf.net/
+URL:		http://pop3vscan.sourceforge.net/
 BuildRequires:	pcre-devel
-Requires:	pcre
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 # FIXME: which package in PLD provides 'netfilter' ?
 #Requires:	netfilter
-Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,17 +50,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add %{name}
-if [ -f /var/lock/subsys/%{name} ]; then
-	/etc/rc.d/init.d/%{name} restart 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/%{name} start\" to start inet server" 1>&2
-fi
+%service %{name} restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/%{name} ]; then
-		/etc/rc.d/init.d/%{name} stop 1>&2
-	fi
+	%service %{name} stop
 	/sbin/chkconfig --del %{name}
 fi
 

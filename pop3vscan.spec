@@ -1,5 +1,5 @@
 Summary:	pop3vscan - an application level gateway for the POP3 protocol
-Summary(pl):	pop3vscan - aplikacyjna bramka dla protoko≥u POP3
+Summary(pl.UTF-8):   pop3vscan - aplikacyjna bramka dla protoko≈Çu POP3
 Name:		pop3vscan
 Version:	0.4
 Release:	1.1
@@ -22,8 +22,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 pop3vscan provides transparent antivirus scanner gateway for the POP3
 protocol.
 
-%description -l pl
-pop3vscan dostarcza przezroczystej bramki antywirusowej dla protoko≥u
+%description -l pl.UTF-8
+pop3vscan dostarcza przezroczystej bramki antywirusowej dla protoko≈Çu
 POP3.
 
 %prep

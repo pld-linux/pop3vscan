@@ -1,5 +1,5 @@
 Summary:	pop3vscan - an application level gateway for the POP3 protocol
-Summary(pl.UTF-8):   pop3vscan - aplikacyjna bramka dla protokołu POP3
+Summary(pl.UTF-8):	pop3vscan - aplikacyjna bramka dla protokołu POP3
 Name:		pop3vscan
 Version:	0.4
 Release:	1.1

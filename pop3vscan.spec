@@ -16,6 +16,7 @@ Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 # FIXME: which package in PLD provides 'netfilter' ?
 #Requires:	netfilter
+Provides:	pop3daemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

@@ -4,7 +4,7 @@ Name:		pop3vscan
 Version:	0.4
 Release:	1.1
 License:	GPL
-Group:		Applications/Networking
+Group:		Networking/Daemons/POP3
 Source0:	http://dl.sourceforge.net/pop3vscan/%{name}-%{version}.tar.gz
 # Source0-md5:	48783c81cf70590637993aa0082fa467
 Source1:	%{name}.init
